@@ -428,7 +428,6 @@ script = ExtResource("1_j3sj4")
 sprite_frames = SubResource("SpriteFrames_nu4uu")
 animation = &"side_idle"
 autoplay = "front_idle"
-frame_progress = 0.295773
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

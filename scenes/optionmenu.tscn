@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://ukyl0ghgxma5"]
+
+[ext_resource type="Script" path="res://scenes/optionmenu.gd" id="1_tqm05"]
+[ext_resource type="Texture2D" uid="uid://prsgkhnwrvxb" path="res://art/menu/main.png" id="2_52gbs"]
+[ext_resource type="FontFile" uid="uid://bqs1xuptqafux" path="res://art/menu/Minecraft.ttf" id="3_06kog"]
+[ext_resource type="Theme" uid="uid://ds2cuyvfd21tb" path="res://art/default.tres" id="3_7sojt"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 538.0
+offset_right = -1076.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("1_tqm05")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(572, -214)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_52gbs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 104.0
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+theme = ExtResource("3_7sojt")
+theme_override_colors/font_color = Color(1, 0.913725, 0, 1)
+theme_override_fonts/font = ExtResource("3_06kog")
+text = "Start"
+
+[node name="OptionButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_7sojt")
+theme_override_colors/font_color = Color(1, 0.913725, 0, 1)
+theme_override_fonts/font = ExtResource("3_06kog")
+text = "Back"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartButton")
+theme = ExtResource("3_7sojt")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_06kog")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

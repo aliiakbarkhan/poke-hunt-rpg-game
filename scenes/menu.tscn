@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://s7ej1sruix31"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_nalva"]
+[ext_resource type="Texture2D" uid="uid://o61l5xa6iw3r" path="res://art/menu/option.png" id="2_20p43"]
+[ext_resource type="FontFile" uid="uid://bqs1xuptqafux" path="res://art/menu/Minecraft.ttf" id="3_w4uwg"]
+[ext_resource type="Theme" uid="uid://ds2cuyvfd21tb" path="res://art/default.tres" id="3_x387u"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 538.0
+offset_right = -1076.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("1_nalva")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(572, -214)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_20p43")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 462.0
+offset_top = -130.0
+offset_right = 672.0
+offset_bottom = -26.0
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+theme = ExtResource("3_x387u")
+theme_override_colors/font_color = Color(1, 0.913725, 0, 1)
+theme_override_fonts/font = ExtResource("3_w4uwg")
+text = "Start"
+
+[node name="OptionButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_x387u")
+theme_override_colors/font_color = Color(1, 0.913725, 0, 1)
+theme_override_fonts/font = ExtResource("3_w4uwg")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartButton")
+theme = ExtResource("3_x387u")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_w4uwg")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

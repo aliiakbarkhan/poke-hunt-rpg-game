@@ -1,0 +1,159 @@
+[gd_scene load_steps=19 format=3 uid="uid://crcgfmfpunqww"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_fdgjg"]
+[ext_resource type="Texture2D" uid="uid://bwxa3wixetjgc" path="res://art/characters/094_0.png" id="2_mhma5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klakf"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvdwe"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1d0e"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_758yo"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki78d"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhlj7"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6n74"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umllb"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i62vj"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyr5t"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeukf"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orr16"]
+atlas = ExtResource("2_mhma5")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mferl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klakf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvdwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1d0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_758yo")
+}],
+"loop": true,
+"name": &"back",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki78d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhlj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6n74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umllb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i62vj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyr5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eeukf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orr16")
+}],
+"loop": true,
+"name": &"side_walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_330br"]
+radius = 83.0963
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ivhlr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yywus"]
+radius = 26.0192
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_fdgjg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mferl")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.868033
+offset = Vector2(0, -26)
+
+[node name="detection_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+position = Vector2(0, -17)
+shape = SubResource("CircleShape2D_330br")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("CircleShape2D_ivhlr")
+
+[node name="enemy_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
+position = Vector2(-1, -18)
+shape = SubResource("CircleShape2D_yywus")
+
+[node name="take_damage_cooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="healthbar" type="ProgressBar" parent="."]
+modulate = Color(0.926809, 0.156967, 1.92523e-07, 1)
+offset_left = -18.0
+offset_right = 17.0
+offset_bottom = 5.0
+value = 100.0
+show_percentage = false
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]
+[connection signal="body_exited" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_exited"]
+[connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]
