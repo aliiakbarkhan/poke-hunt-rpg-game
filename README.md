@@ -4,6 +4,11 @@ https://github.com/user-attachments/assets/46d5baed-46fa-4d35-ac6f-273e366f212c
 
 Welcome to **POKE-HUNT RPG**! 🌟 A fun-filled, single-player adventure game where you embark on an epic quest to hunt and capture powerful creatures in a vibrant world. Get ready to explore, battle, and conquer in this exciting RPG experience!
 
+## All Rights Reserved.
+This repository and its contents are copyrighted. No part of this repository may be reproduced, distributed, or used without explicit permission from the owner.
+
+
+
 ## ℹ️ About
 
 **POKE-HUNT RPG** is a thrilling adventure game built with the Godot Engine and GDScript. 🛠️ Dive into a world teeming with wild creatures, challenging battles, and endless exploration. Whether you're a seasoned RPG fan or new to the genre, this game offers something for everyone. 🎯
