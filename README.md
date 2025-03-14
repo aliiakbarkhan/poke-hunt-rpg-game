@@ -59,3 +59,7 @@ We welcome contributions from the community! Whether it’s fixing bugs, adding 
    ```bash
    git push origin feature/your-feature-name
 5. **Open a Pull Request**
+
+## Licence
+
+https://github.com/user-attachments/assets/1b6f530c-0eb8-4c25-90c6-f26a9c64263a
